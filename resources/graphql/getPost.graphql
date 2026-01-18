@@ -1,0 +1,33 @@
+query GetPost($uri:String!) {
+  nodeByUri(uri: $uri) {
+    __typename
+    ... on Post {
+      id
+      title
+      date
+      uri
+      content
+      comments {
+        nodes {
+          approved
+          author {
+            email
+            name
+          }
+          content
+        }
+      }
+      featuredImage {
+        node {
+          mediaDetails {
+            sizes {
+              sourceUrl
+              name
+            }
+          }
+          altText
+        }
+      }
+    }
+  }
+}

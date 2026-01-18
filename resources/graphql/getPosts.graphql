@@ -1,0 +1,28 @@
+query GetPosts($first: Int! = 5, $after: String, $categoryName: String = "") {
+  posts(first: $first, after: $after, where: {categoryName: $categoryName}) {
+    nodes {
+      id
+      title
+      uri
+      excerpt
+      slug
+      uri
+      featuredImage {
+        node {
+          altText
+          mediaDetails {
+            sizes {
+              sourceUrl
+              name
+            }
+          }
+        }
+      }
+      date
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}
