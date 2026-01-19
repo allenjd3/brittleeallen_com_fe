@@ -30,8 +30,8 @@ new class extends Component
     @php
         $post = $this->getBlog();
     @endphp
-    <div class="max-w-5xl mx-auto">
-        <img class="max-w-3xl mx-auto" src="{{ $post->featuredImage->getUrl('large') }}" alt="{{ $post->featuredImage->altText }}" />
+    <div class="max-w-5xl mx-auto px-4">
+        <img class="w-full max-w-3xl mx-auto" src="{{ $post->featuredImage->getUrl('large') }}" alt="{{ $post->featuredImage->altText }}" />
         <h2 class="text-3xl mt-16 mb-4">{{ $post->title }}</h2>
         <p class="mb-4">{{ $post->date->format('F d, Y') }}</p>
         <div class="prose max-w-none mb-32">
