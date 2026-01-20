@@ -6,6 +6,15 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --color-tan-light: oklch(0.9025 0.0111 54.48);
+    --color-tan-bright: oklch(0.9557 0.0111 54.48);
+    --color-tan-dark: oklch(0.8133 0.0111 54.48);
+    --color-green-very-dark: oklch(0.3423 0.0482 184.28);
+    --color-green-base: oklch(0.4846 0.0482 184.28);
 }
+
+.wrapper {
+    @apply max-w-7xl mx-auto;
+}
+
 @plugin "@tailwindcss/typography";

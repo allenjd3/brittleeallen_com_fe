@@ -1,4 +1,4 @@
-<nav class="sticky top-0 bg-white flex px-4 h-16 items-center justify-between border-b border-gray-200">
+<nav class="sticky top-0 bg-white flex px-4 h-16 items-center justify-between border-b border-gray-200 z-10">
     <h2 class="text-2xl font-serif"><a href="/" wire:navigate.hover>Britt Lee Allen</a></h2>
 
     <flux:modal.trigger class="sm:hidden" name="mobile-nav">
