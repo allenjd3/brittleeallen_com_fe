@@ -7,23 +7,51 @@ use App\DTO\Post;
 
 new class extends Component
 {
-    #[Computed]
-    public function getBlogs() {
+    public ?String $search = null;
+    public ?String $cursor = null;
+    public array $postsData = [];
+
+    public function mount() {
+        $this->loadMore();
+    }
+
+    public function loadMore() {
         $response = Http::asJson()->post(config('app.api_endpoint'), [
             'query' => File::get(resource_path('graphql/getPosts.graphql')),
             'variables' => [
-                'first' => 5
+                'first' => 5,
+                'search' => $this->search,
+                'after' => $this->cursor,
             ]
         ]);
 
-        return collect($response->json('data.posts.nodes'))
-            ->mapInto(Post::class);
+        $data = $response->json('data.posts');
+
+        $this->postsData = array_merge(
+            $this->postsData,
+            $data['nodes'] ?? []
+        );
+
+        $this->cursor = $data['pageInfo']['endCursor'] ?? null;
+    }
+
+    #[Computed]
+    public function posts() {
+        // Map to DTOs only when accessed
+        return collect($this->postsData)->mapInto(Post::class);
+    }
+
+    public function updatedSearch() {
+        $this->postsData = [];
+        $this->cursor = null;
+        $this->loadMore();
     }
 };
 ?>
 
 <div class="space-y-8 max-w-5xl mx-auto my-8">
-    @foreach ($this->getBlogs as $post)
+    <flux:input icon="magnifying-glass" placeholder="Search orders" wire:model.live="search" />
+    @foreach ($this->posts as $post)
         <div class="grid grid-cols-1 sm:grid-cols-[300px_1fr] gap-8 px-4 place-items-center">
             <img src="{{ $post->featuredImage->getUrl('large') }}" alt="{{ $post->featuredImage->altText }}" />
             <div>
@@ -32,4 +60,7 @@ new class extends Component
             </div>
         </div>
     @endforeach
+    <div x-intersect.margin.200px="$wire.loadMore()" class="flex justify-center items-center">
+        <flux:button wire:click="loadMore" variant="primary">Load More</flux:button>
+    </div>
 </div>
