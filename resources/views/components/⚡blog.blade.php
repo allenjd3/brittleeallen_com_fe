@@ -34,7 +34,7 @@ new class extends Component
         <img class="w-full max-w-3xl mx-auto" src="{{ $post->featuredImage->getUrl('large') }}" alt="{{ $post->featuredImage->altText }}" />
         <h2 class="text-3xl mt-16 mb-4">{{ $post->title }}</h2>
         <p class="mb-4">{{ $post->date->format('F d, Y') }}</p>
-        <div class="prose max-w-none mb-32">
+        <div class="prose-lg mb-32 mx-auto">
             {!! $post->body !!}
         </div>
     </div>

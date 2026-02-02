@@ -1,6 +1,7 @@
 <?php
 
 use App\DTO\Category;
+use Illuminate\Support\Arr;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
@@ -9,15 +10,7 @@ new class extends Component
     #[Computed]
     public function getCategories()
     {
-        $response = Http::asJson()->post(config('app.api_endpoint'), [
-            'query' => File::get(resource_path('graphql/getCategories.graphql')),
-            'variables' => [
-                'tag' => 'category-tag',
-            ]
-        ]);
-
-        return collect($response->json('data.pages.nodes'))
-            ->mapInto(Category::class);
+        return config('categories.all');
     }
 };
 ?>
@@ -27,8 +20,10 @@ new class extends Component
     <div class="max-w-6xl mx-auto grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-8 px-8">
         @foreach($this->getCategories as $category)
             <div class="text-center bg-white shadow-lg">
-                <img src="{{ $category->featuredImage->getUrl('large') }}" alt="{{ $category->featuredImage->altText }}" />
-                <h3 class="text-xl p-4 font-bold">{{ $category->title }}</h3>
+                <div class="aspect-square overflow-hidden">
+                    <img class="w-full h-full object-cover" src="{{ config('app.base_api_endpoint') . data_get($category, 'imgSrc')}}" alt="" />
+                </div>
+                <h3 class="text-xl p-4 font-bold"><a href="{{ Uri::route('post.index', ['categoryName' => data_get($category, 'categorySlug')])->withFragment('blogs') }}">{{ data_get($category, 'title') }}</a></h3>
             </div>
         @endforeach
     </div>

@@ -19,6 +19,12 @@ query GetPosts($first: Int! = 5, $after: String, $categoryName: String, $search:
         }
       }
       date
+      categories {
+        nodes {
+          name
+          slug
+        }
+      }
     }
     pageInfo {
       hasNextPage

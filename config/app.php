@@ -122,5 +122,6 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
-    'api_endpoint' => env('APP_API_ENDPOINT'),
+    'base_api_endpoint' => env('APP_API_ENDPOINT'),
+    'api_endpoint' => env('APP_API_ENDPOINT') . '/wp/graphql',
 ];

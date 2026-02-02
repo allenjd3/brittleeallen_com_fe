@@ -1,14 +1,18 @@
 <?php
 
+use App\DTO\Post;
 use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Url;
 use Livewire\Component;
-use App\DTO\Post;
 
 new class extends Component
 {
-    public ?String $search = null;
-    public ?String $cursor = null;
+    public ?string $search = null;
+    public ?string $cursor = null;
+
+    #[Url]
+    public ?string $categoryName = null;
     public array $postsData = [];
 
     public function mount() {
@@ -22,6 +26,7 @@ new class extends Component
                 'first' => 5,
                 'search' => $this->search,
                 'after' => $this->cursor,
+                'categoryName' => $this->categoryName,
             ]
         ]);
 
@@ -49,7 +54,9 @@ new class extends Component
 };
 ?>
 
-<div class="space-y-8 max-w-5xl mx-auto my-8">
+<div>
+<livewire:categories />
+<div id="blogs" class="space-y-8 max-w-5xl mx-auto my-8 scroll-mt-16">
     <flux:input icon="magnifying-glass" placeholder="Search orders" wire:model.live="search" />
     @foreach ($this->posts as $post)
         <div class="grid grid-cols-1 sm:grid-cols-[300px_1fr] gap-8 px-4 place-items-center">
@@ -63,4 +70,5 @@ new class extends Component
     <div x-intersect.margin.200px="$wire.loadMore()" class="flex justify-center items-center">
         <flux:button wire:click="loadMore" variant="primary">Load More</flux:button>
     </div>
+</div>
 </div>

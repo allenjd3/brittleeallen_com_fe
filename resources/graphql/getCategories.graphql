@@ -2,7 +2,9 @@ query GetCategories($tag: String) {
   pages(where: {tag: $tag}) {
     nodes {
       id
+      databaseId
       title
+      slug
       featuredImage {
         node {
           mediaDetails {
