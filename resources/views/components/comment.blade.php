@@ -29,7 +29,7 @@
         />
     @else
         <div class="bg-gray-200 w-12 h-12 rounded-full flex justify-center items-center">
-            {{ $comment->initials }}
+            {{ $comment->author?->initials() }}
         </div>
     @endif
 
@@ -44,9 +44,11 @@
         {!! $comment->content !!}
       </div>
 
-      <button class="text-sm text-blue-600 hover:text-blue-700 font-medium">
-        Reply
-      </button>
+      @if (! $isNested)
+        <button class="text-sm text-blue-600 hover:text-blue-700 font-medium">
+            Reply
+        </button>
+      @endif
 
         @isset ($comment->comments)
             <div class="mt-8">

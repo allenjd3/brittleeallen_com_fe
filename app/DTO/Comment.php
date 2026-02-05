@@ -22,7 +22,6 @@ final readonly class Comment
         $this->approved = data_get($data, 'approved');
         $this->content = data_get($data, 'content');
         $this->id = data_get($data, 'databaseId');
-        $this->initials = "JA";
         $this->date = Carbon::parse(data_get($data, 'date'));
         $this->parentId = data_get($data, 'parentDatabaseId');
         $this->author = new Author(data_get($data, 'author'));
