@@ -28,7 +28,7 @@
             class="w-12 h-12 rounded-full"
         />
     @else
-        <div class="bg-gray-200 w-12 h-12 rounded-full flex justify-center items-center">
+        <div class="bg-green-light text-green-very-dark w-12 h-12 rounded-full flex justify-center items-center">
             {{ $comment->author?->initials() }}
         </div>
     @endif
@@ -45,7 +45,7 @@
       </div>
 
       @if (! $isNested)
-        <button class="text-sm text-blue-600 hover:text-blue-700 font-medium">
+        <button class="text-sm text-green-base hover:text-green-very-dark font-medium">
             Reply
         </button>
       @endif
