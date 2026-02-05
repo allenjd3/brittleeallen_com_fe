@@ -9,12 +9,15 @@ query GetPost($uri:String!) {
       content
       comments {
         nodes {
+          databaseId
+          parentDatabaseId
           approved
           author {
             email
             name
           }
           content
+          date
         }
       }
       featuredImage {

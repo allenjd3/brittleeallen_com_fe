@@ -1,5 +1,5 @@
 query GetPosts($first: Int! = 5, $after: String, $categoryName: String, $search: String) {
-  posts(first: $first, after: $after, where: {search: $search, categoryName: $categoryName}) {
+  posts(first: $first, after: $after, where: {search: $search, categoryName: $categoryName, status: PUBLISH}) {
     nodes {
       id
       title
