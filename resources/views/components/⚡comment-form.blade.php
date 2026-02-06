@@ -46,6 +46,7 @@ new class extends Component
         }
 
         $this->successMessage('Your comment was successfully received!');
+        $this->dispatch('added-comment');
     }
 
     public function successMessage(string $message)

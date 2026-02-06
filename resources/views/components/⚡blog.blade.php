@@ -2,18 +2,21 @@
 
 use App\DTO\Post;
 use Livewire\Component;
+use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Locked;
 
 new class extends Component
 {
-    private string $uri;
+    #[Locked]
+    public string $uri;
 
     public function mount(string $uri) {
         $this->uri = $uri;
-        $this->post = $this->getBlog();
     }
 
     #[Computed]
-    public function getBlog() {
+    public function post() {
         $response = Http::asJson()->post(config('app.api_endpoint'), [
             'query' => File::get(resource_path('graphql/getPost.graphql')),
             'variables' => [
@@ -23,26 +26,29 @@ new class extends Component
 
         return new Post($response->json('data.nodeByUri'));
     }
+
+    #[On('added-comment')]
+    public function updatePost()
+    {
+        unset($this->post);
+    }
 };
 ?>
 
 <div>
-    @php
-        $post = $this->getBlog();
-    @endphp
     <div class="max-w-5xl mb-32  mx-auto px-4">
-        <img class="w-full max-w-3xl mx-auto" src="{{ $post->featuredImage->getUrl('large') }}" alt="{{ $post->featuredImage->altText }}" />
-        <h2 class="text-3xl mt-16 mb-4">{{ $post->title }}</h2>
-        <p class="mb-4">{{ $post->date->format('F d, Y') }}</p>
+        <img class="w-full max-w-3xl mx-auto" src="{{ $this->post->featuredImage->getUrl('large') }}" alt="{{ $this->post->featuredImage->altText }}" />
+        <h2 class="text-3xl mt-16 mb-4">{{ $this->post->title }}</h2>
+        <p class="mb-4">{{ $this->post->date->format('F d, Y') }}</p>
         <div class="prose-lg mx-auto">
-            {!! $post->body !!}
+            {!! $this->post->body !!}
         </div>
 
         <div class="w-full mx-auto">
             <h3 class="text-3xl mt-16 mb-8 font-bold">Comments</h3>
-            <livewire:comment-form :postId="$post->id" />
+            <livewire:comment-form :postId="$this->post->id" />
             <div>
-                @foreach($post->comments as $comment)
+                @foreach($this->post->comments as $comment)
                     <x-comment :$comment />
                 @endforeach
             </div>
