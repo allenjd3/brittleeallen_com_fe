@@ -1,5 +1,7 @@
 @props([
     'comment',
+    'postId',
+    'shouldShowReply' => true,
     'isNested' => false,
 ])
 
@@ -40,20 +42,16 @@
         <span class="text-sm text-gray-500">{{ $comment->date->diffForHumans() }}</span>
       </div>
 
-      <div class="prose text-gray-700 mb-3">
+      <div class="prose max-w-none text-gray-700 mb-3">
         {!! $comment->content !!}
       </div>
 
-      @if (! $isNested)
-        <button class="text-sm text-green-base hover:text-green-very-dark font-medium">
-            Reply
-        </button>
-      @endif
+      <livewire:comment-form isNested :shouldShowReply="$shouldShowReply" :$postId :parentId="$comment->id" />
 
         @isset ($comment->comments)
             <div class="mt-8">
                 @foreach($comment->comments as $subComment)
-                    <x-comment :comment="$subComment" isNested />
+                    <x-comment :comment="$subComment" :postId="$postId" isNested :shouldShowReply="false" />
                 @endforeach
             </div>
         @endif

@@ -49,7 +49,7 @@ new class extends Component
             <livewire:comment-form :postId="$this->post->id" />
             <div>
                 @foreach($this->post->comments as $comment)
-                    <x-comment :$comment />
+                    <x-comment :$comment :postId="$this->post->id" />
                 @endforeach
             </div>
         </div>
