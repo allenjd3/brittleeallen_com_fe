@@ -38,27 +38,14 @@ new class extends Component
             {!! $post->body !!}
         </div>
 
-        <div class="w-max mx-auto">
-            <h3 class="text-2xl mt-16 mb-8">Comments</h3>
+        <div class="w-full mx-auto">
+            <h3 class="text-3xl mt-16 mb-8 font-bold">Comments</h3>
+            <livewire:comment-form :postId="$post->id" />
             <div>
                 @foreach($post->comments as $comment)
                     <x-comment :$comment />
-                    {{-- <div>
-                        <b>{!! $comment->author->name !!}</b>
-                        <div class="prose">
-                            {!! $comment->content !!}
-                        </div>
-                        @foreach($comment->comments as $comment)
-                            <div class="ml-8">
-                                <b>{!! $comment->author->name !!}</b>
-                                <div class="prose">
-                                    {!! $comment->content !!}
-                                </div>
-                            </div>
-                        @endforeach
-                    </div> --}}
                 @endforeach
-                </div>
             </div>
         </div>
+    </div>
 </div>

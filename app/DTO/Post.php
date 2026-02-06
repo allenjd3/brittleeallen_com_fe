@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 
 final readonly class Post
 {
+    public ?int $id;
     public string $title;
     public string $body;
     public string $uri;
@@ -25,6 +26,7 @@ final readonly class Post
             $this->body = data_get($data, 'content');
         }
 
+        $this->id = data_get($data, 'databaseId');
         $this->uri = data_get($data, 'uri');
         $this->featuredImage = new FeaturedImage(data_get($data, 'featuredImage'));
         $this->date = Carbon::parse(data_get($data, 'date'));

@@ -3,6 +3,7 @@ query GetPost($uri:String!) {
     __typename
     ... on Post {
       id
+      databaseId
       title
       date
       uri
