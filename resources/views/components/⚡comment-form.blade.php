@@ -3,19 +3,29 @@
 use Livewire\Attributes\Validate;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
+use RyanChandler\LaravelCloudflareTurnstile\Rules\Turnstile;
 
 new class extends Component
 {
     #[Locked]
     public int $postId;
+
     #[Locked]
     public int $parentId;
+
     #[Validate('required')]
     public string $name;
+
     #[Validate('required')]
     public string $email;
+
     #[Validate('required')]
     public string $content;
+
+    #[Validate('required')]
+    #[Validate(new Turnstile)]
+    public $captcha;
+
     public bool $isNested = false;
     public bool $collapsed = true;
     public bool $shouldShowReply = false;
@@ -88,6 +98,10 @@ new class extends Component
 ?>
 
 <div>
+    @pushOnce('scripts')
+        <x-turnstile.scripts />
+    @endPushOnce
+
     @if ($isNested && $collapsed && $shouldShowReply)
         <button wire:click="toggleCollapsed" class="text-sm text-green-base hover:text-green-very-dark font-medium">
             Reply
@@ -110,47 +124,28 @@ new class extends Component
         <form wire:submit="save" class="mx-auto space-y-6 p-6 bg-white rounded-lg">
             <h3 class="text-2xl font-bold text-gray-900 mb-6">Leave a {{ $isNested ? 'Reply' : 'Comment' }}</h3>
 
-            <div>
-                <label for="author_name" class="block text-sm font-medium text-gray-700 mb-2">
-                    Name <span class="text-red-500">*</span>
-                </label>
-                <input
-                    type="text"
-                    id="author_name"
-                    wire:model="name"
-                    required
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                    placeholder="Your name"
-                >
-            </div>
+            <flux:field>
+                <flux:label class="gap-1">Name <span class="text-red-500">*</span></flux:label>
+                <flux:input wire:model="name" required placeholder="Your Name" />
+                <flux:error name="name" />
+            </flux:field>
 
-            <div>
-                <label for="author_email" class="block text-sm font-medium text-gray-700 mb-2">
-                    Email <span class="text-red-500">*</span>
-                </label>
-                <input
-                    type="email"
-                    id="author_email"
-                    wire:model="email"
-                    required
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                    placeholder="your@email.com"
-                >
-            </div>
+            <flux:field>
+                <flux:label class="gap-1">Email <span class="text-red-500">*</span></flux:label>
+                <flux:input wire:model="email" type="email" placeholder="your@email.com" required />
+                <flux:error name="email" />
+            </flux:field>
 
-            <div>
-                <label for="content" class="block text-sm font-medium text-gray-700 mb-2">
-                    Comment <span class="text-red-500">*</span>
-                </label>
-                <textarea
-                    id="content"
-                    wire:model="content"
-                    rows="5"
-                    required
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-y"
-                    placeholder="Share your thoughts..."
-                ></textarea>
-            </div>
+            <flux:field>
+                <flux:label class="gap-1">Comment <span class="text-red-500">*</span></flux:label>
+                <flux:textarea wire:model="content" placeholder="Your Comment Here" required />
+                <flux:error name="content" />
+            </flux:field>
+
+            <flux:field>
+                <x-turnstile wire:model="captcha" />
+                <flux:error name="captcha" />
+            </flux:field>
 
             <div class="flex items-center justify-between">
                 <p class="text-sm text-gray-500">

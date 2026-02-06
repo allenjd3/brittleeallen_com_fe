@@ -10,6 +10,7 @@
 
         @livewireStyles
         @fluxAppearance
+        @stack('scripts')
     </head>
     <body>
         <x-nav-bar />
