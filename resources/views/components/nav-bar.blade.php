@@ -11,8 +11,9 @@
 
     <div class="hidden sm:flex items-center gap-8">
         <a href="/blogs" wire:navigate.hover>Blog</a>
-        <a href="/podcast">Podcast</a>
-        <a href="#" class="bg-black rounded-full py-2 px-4 text-white">Newsletter</a>
+        <a href="https://brittanyleeallen.substack.com/podcast">Podcast</a>
+        <a href="/contact">Contact</a>
+        <a href="https://brittanyleeallen.substack.com/newsletters" class="bg-black rounded-full py-2 px-4 text-white">Newsletter</a>
     </div>
 </nav>
 
