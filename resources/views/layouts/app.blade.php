@@ -16,6 +16,25 @@
         <x-nav-bar />
         {{ $slot }}
 
+        <div
+            x-init="
+                const key = 'commentModalLastShown'
+                const last = localStorage.getItem(key)
+                const now = Date.now()
+                const oneDay = 1000 * 60 * 60 * 24
+
+                if (!last || now - last > oneDay) {
+                    setTimeout(() => {
+                        $flux.modal('ad').show()
+                        localStorage.setItem(key, now)
+                    }, 3000)
+                }
+            "
+        >
+            <flux:modal name="ad" class="!bg-[#E3DDDB]">
+                <iframe src="https://brittanyleeallen.substack.com/embed" width="480" height="320" frameborder="0" scrolling="no"></iframe>
+            </flux:modal>
+        </div>
         @livewireScripts
         @fluxScripts
     </body>
