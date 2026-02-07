@@ -2,6 +2,8 @@
 
 use Livewire\Component;
 use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactUs;
 
 new class extends Component
 {
@@ -14,16 +16,47 @@ new class extends Component
     #[Validate('required')]
     public string $message;
 
+    public bool $isSuccessful;
+    public string $flashMessage;
+
     public function save()
     {
         $this->validate();
 
+        Mail::to('britt.allen81713@yahoo.com')->send(new ContactUs(name: $this->name, email: $this->email, content: $this->message));
+
+        $this->successMessage('Successfully sent! Thanks for contacting us.');
+    }
+
+    public function successMessage(string $message)
+    {
+        $this->flashMessage = $message;
+        $this->isSuccessful = true;
+
+        $this->message = "";
+        $this->name = "";
+        $this->email = "";
+
+        $this->dispatch('flash-message');
     }
 };
 ?>
 
 <div class="bg-tan-light min-h-dvh">
     <div class="max-w-3xl mx-auto pt-32">
+        <div
+            x-data="{ show: false }"
+            x-show="show"
+            x-transition
+            @flash-message.window="
+                show = true;
+                setTimeout(() => show = false, 3000);
+                $nextTick(() => $el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }))
+            "
+            @class(['scroll-mt-16', 'text-green-500' => $isSuccessful, 'text-red-500' => ! $isSuccessful])
+        >
+            {{ $flashMessage }}
+        </div>
         <h1 class="text-3xl font-bold mb-8">Contact Me</h1>
         <form wire:submit="save" class="flex flex-col gap-4">
             <flux:field>
