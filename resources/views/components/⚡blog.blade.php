@@ -24,6 +24,10 @@ new class extends Component
             ]
         ]);
 
+        if (!$response->json('data.nodeByUri')) {
+            abort(404);
+        }
+
         return new Post($response->json('data.nodeByUri'));
     }
 

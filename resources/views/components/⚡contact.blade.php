@@ -4,6 +4,7 @@ use Livewire\Component;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactUs;
+use RyanChandler\LaravelCloudflareTurnstile\Rules\Turnstile;
 
 new class extends Component
 {
@@ -15,6 +16,10 @@ new class extends Component
 
     #[Validate('required')]
     public string $message;
+
+    #[Validate('required')]
+    #[Validate(new Turnstile)]
+    public $captcha;
 
     public bool $isSuccessful;
     public string $flashMessage;
@@ -43,6 +48,9 @@ new class extends Component
 ?>
 
 <div class="bg-tan-light min-h-dvh">
+    @pushOnce('scripts')
+        <x-turnstile.scripts />
+    @endPushOnce
     <div class="max-w-3xl mx-auto pt-32">
         <div
             x-data="{ show: false }"
@@ -73,6 +81,11 @@ new class extends Component
                 <flux:label>Message</flux:label>
                 <flux:textarea wire:model="message" placeholder="Your Message Here" />
                 <flux:error name="message" />
+            </flux:field>
+
+            <flux:field>
+                <x-turnstile wire:model="captcha" />
+                <flux:error name="captcha" />
             </flux:field>
 
             <div class="flex items-center justify-between">
