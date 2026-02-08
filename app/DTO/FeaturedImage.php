@@ -10,6 +10,7 @@ final readonly class FeaturedImage
 
     public function __construct(
         private array $data,
+        private ?string $sourceUrl = null,
     ) {
         $this->altText = data_get($data, 'node.altText');
         $this->sizes = collect(data_get($data, 'node.mediaDetails.sizes'));
@@ -17,9 +18,11 @@ final readonly class FeaturedImage
 
     public function getUrl(string $mysize)
     {
-        return $this->sizes
-            ->filter(fn ($size) => data_get($size, 'name') == $mysize)
-            ->pluck('sourceUrl')
-            ->first();
+        return $this->sizes->filter(fn ($size) => data_get($size, 'name') == $mysize)->pluck('sourceUrl')->count()
+            ? $this->sizes
+                ->filter(fn ($size) => data_get($size, 'name') == $mysize)
+                ->pluck('sourceUrl')
+                ->first()
+            : $this->sourceUrl;
     }
 }

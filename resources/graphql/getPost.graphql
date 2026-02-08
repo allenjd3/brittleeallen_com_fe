@@ -29,6 +29,7 @@ query GetPost($uri:String!) {
               name
             }
           }
+          sourceUrl
           altText
         }
       }

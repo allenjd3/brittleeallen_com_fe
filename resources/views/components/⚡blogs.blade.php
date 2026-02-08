@@ -60,7 +60,9 @@ new class extends Component
     <flux:input icon="magnifying-glass" placeholder="Search orders" wire:model.live="search" />
     @foreach ($this->posts as $post)
         <div class="grid grid-cols-1 sm:grid-cols-[300px_1fr] gap-8 px-4 place-items-center">
-            <img src="{{ $post->featuredImage->getUrl('large') }}" alt="{{ $post->featuredImage->altText }}" />
+            <div class="aspect-video overflow-hidden">
+                <img class="object-cover object-center w-full h-full" src="{{ $post->featuredImage->getUrl('large') }}" alt="{{ $post->featuredImage->altText }}" />
+            </div>
             <div>
                 <h3 class="text-2xl mb-3"><a href="{{ route('post.uri', ['uri' => $post->uri]) }}" wire:navigate.hover>{{ $post->title }}</a></h3>
                 {!! $post->body !!}
