@@ -15,8 +15,8 @@
                 <div class="mt-4 [&>p]:mb-4" >{!! $bookQuote !!}</div>
             </div>
             <div class="flex gap-4">
-                <a href="" class="bg-black text-white px-4 py-3 rounded">Buy Now</a>
-                <a href="" class="bg-white text-black px-4 py-3 rounded">Learn More</a>
+                <flux:button variant="primary">Buy Now</flux:button>
+                <flux:button>Learn More</flux:button>
             </div>
         </div>
     </div>

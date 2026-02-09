@@ -15,6 +15,7 @@ new class extends Component
         bookUrl="https://brittleeallen.com/app/uploads/2023/02/IMG_3999.jpg"
         bookQuote="<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio quis autem atque, nostrum optio fugit repellat voluptatem possimus quidem</p> <p>veritatis magnam nesciunt corrupti alias accusamus, aliquid maiores consequuntur reiciendis cupiditate.</p>"
     />
+    <x-britt-message />
     <div class="bg-green-very-dark p-8">
         <h2 class="text-4xl text-white/90 font-serif text-center mb-2">Excerpts</h2>
         <p class="text-xl font-serif text-white/90 text-center mb-8 italic">Some Tagline Here</p>
