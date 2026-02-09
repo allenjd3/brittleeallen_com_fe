@@ -10,7 +10,7 @@ new class extends Component
 
 <div>
     <div class="max-w-5xl mb-32  mx-auto px-4 prose-lg">
-        <img class="w-full max-w-xl mx-auto" src="{{ asset('/images/britt.webp') }}" alt="Brittany Allen" />
+        <img class="w-full max-w-sm mx-auto" src="{{ asset('/images/britt.webp') }}" alt="Brittany Allen" />
         <p>Hi there! My name is Brittany Allen. I’m a wife to James and mama to two boys, as well as three babies in heaven lost through miscarriage. I’m an author, aspiring poet, and a sometimes speaker.</p>
 
         <p>If you were to peer into my home, you might find me changing another diaper or grabbing another snack, sipping my second cup of coffee, tending to my small cut flower garden (in the summer), writing in the in-between moments of motherhood, or held up on the couch with a heating pad.</p>
