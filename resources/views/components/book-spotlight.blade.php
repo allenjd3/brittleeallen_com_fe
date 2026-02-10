@@ -3,6 +3,7 @@
     'bookTagline' => '',
     'bookQuote' => '',
     'bookUrl' => '',
+    'url' => '',
 ])
 <div class="bg-tan-light relative isolate">
     <div class="wrapper px-4 py-12 grid gap-8 grid-cols-1 sm:grid-cols-2">
@@ -15,7 +16,7 @@
                 <div class="mt-4 [&>p]:mb-4" >{!! $bookQuote !!}</div>
             </div>
             <div class="flex gap-4">
-                <flux:button href="https://www.amazon.com/Free-Weep-Finding-Courage-Embracing-ebook/dp/B0FQZN9QCL?ref_=ast_author_dp&th=1&psc=1" variant="primary">Preorder Now</flux:button>
+                <flux:button href="{{ $url }}" variant="primary">Preorder Now</flux:button>
             </div>
         </div>
     </div>
