@@ -4,6 +4,7 @@ use Livewire\Component;
 use App\DTO\Post;
 use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Computed;
+use Illuminate\Support\Facades\Cache;
 
 new class extends Component
 {
@@ -16,20 +17,26 @@ new class extends Component
 
     public function loadRecent()
     {
-        $response = Http::asJson()->post(config('app.api_endpoint'), [
-            'query' => File::get(resource_path('graphql/getPosts.graphql')),
-            'variables' => [
-                'first' => 4,
-            ]
-        ]);
-
-        $this->recentPosts = $response->json('data.posts.nodes');
+        $this->recentPosts = Cache::flexible(
+            'recentPosts',
+            [5, 10],
+            fn () => Http::asJson()->retry(3, 500)->post(config('app.api_endpoint'), [
+                'query' => File::get(resource_path('graphql/getPosts.graphql')),
+                'variables' => [
+                    'first' => 4,
+                ]
+            ])->json('data.posts.nodes'),
+        );
     }
 
     #[Computed]
     public function posts() {
         // Map to DTOs only when accessed
         return collect($this->recentPosts)->mapInto(Post::class);
+    }
+
+    public function placeholder() {
+        return view('placeholders.recent-posts-skeleton');
     }
 };
 ?>
