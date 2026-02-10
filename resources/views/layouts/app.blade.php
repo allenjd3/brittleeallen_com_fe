@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="scroll-smooth" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,6 +34,7 @@
             <flux:modal name="ad" class="!bg-[#E3DDDB]">
                 <iframe src="https://brittanyleeallen.substack.com/embed" width="480" height="320" frameborder="0" scrolling="no"></iframe>
             </flux:modal>
+            <x-footer />
         </div>
         @livewireScripts
         @fluxScripts

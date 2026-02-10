@@ -27,7 +27,7 @@ final readonly class Post
         }
 
         $this->id = data_get($data, 'databaseId');
-        $this->uri = data_get($data, 'uri');
+        $this->uri = data_get($data, 'uri') . "#content";
         $this->featuredImage = new FeaturedImage(data_get($data, 'featuredImage'), data_get($data, 'featuredImage.node.sourceUrl'));
         $this->date = Carbon::parse(data_get($data, 'date'));
         $this->nestComments(collect(data_get($data, 'comments.nodes'))->mapInto(Comment::class));

@@ -42,7 +42,7 @@ new class extends Component
 <div>
     <div class="max-w-5xl mb-32  mx-auto px-4">
         <img class="w-full max-w-3xl mx-auto" src="{{ $this->post->featuredImage->getUrl('large') }}" alt="{{ $this->post->featuredImage->altText }}" />
-        <h2 class="text-3xl mt-16 mb-4">{{ $this->post->title }}</h2>
+        <h2 id="content" class="text-3xl mt-16 mb-4 scroll-mt-32">{{ $this->post->title }}</h2>
         <p class="mb-4">{{ $this->post->date->format('F d, Y') }}</p>
         <div class="prose-lg mx-auto">
             {!! $this->post->body !!}
