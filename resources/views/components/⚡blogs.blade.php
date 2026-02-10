@@ -20,17 +20,19 @@ new class extends Component
     }
 
     public function loadMore() {
-        $response = Http::asJson()->post(config('app.api_endpoint'), [
-            'query' => File::get(resource_path('graphql/getPosts.graphql')),
-            'variables' => [
-                'first' => 5,
-                'search' => $this->search,
-                'after' => $this->cursor,
-                'categoryName' => $this->categoryName,
-            ]
-        ]);
-
-        $data = $response->json('data.posts');
+        $data = Cache::flexible(
+            "loadMore{$this->search}{$this->cursor}{$this->categoryName}",
+            [5, 10],
+            fn () => Http::asJson()->retry(3, 500)->post(config('app.api_endpoint'), [
+                'query' => File::get(resource_path('graphql/getPosts.graphql')),
+                'variables' => [
+                    'first' => 5,
+                    'search' => $this->search,
+                    'after' => $this->cursor,
+                    'categoryName' => $this->categoryName,
+                ]
+            ])->json('data.posts')
+        );
 
         $this->postsData = array_merge(
             $this->postsData,
