@@ -46,8 +46,8 @@ new class extends Component
         <h2 class="text-3xl font-serif">
             Sign up for my newsletter!
         </h2>
-        <iframe src="https://brittanyleeallen.substack.com/embed" width="480" height="320" frameborder="0" scrolling="no"></iframe>
+        <iframe class="max-w-full" src="https://brittanyleeallen.substack.com/embed" width="480" height="320" frameborder="0" scrolling="no"></iframe>
 
-        <a class="text-xl font-serif" href="https://www.instagram.com/brittanyleeallen/">Follow along on Instagram @brittanyleeallen</a>
+        <a class="text-xl font-serif text-center" href="https://www.instagram.com/brittanyleeallen/">Follow along on Instagram @brittanyleeallen</a>
     </div>
 </div>
