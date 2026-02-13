@@ -21,7 +21,9 @@
 <flux:modal name="mobile-nav" flyout>
     <div class="space-y-2 w-64">
         <a href="/blogs" wire:navigate class="block p-2 hover:bg-zinc-800/5 rounded">Blog</a>
-        <a href="/podcast" class="block p-2 hover:bg-zinc-800/5 rounded">Podcast</a>
-        <a href="/newsletter" class="block p-2 bg-black text-white rounded">Newsletter</a>
+        <a href="https://brittanyleeallen.substack.com/podcast" class="block p-2 hover:bg-zinc-800/5 rounded">Podcast</a>
+        <a href="/contact" class="block p-2 hover:bg-zinc-800/5 rounded">Contact</a>
+        <a href="/why-i-write" class="block p-2 hover:bg-zinc-800/5 rounded">Meet Brittany</a>
+        <a href="https://brittanyleeallen.substack.com/newsletters" class="block p-2 bg-black text-white rounded">Newsletter</a>
     </div>
 </flux:modal>

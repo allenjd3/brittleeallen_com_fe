@@ -51,7 +51,7 @@ new class extends Component
     @pushOnce('scripts')
         <x-turnstile.scripts />
     @endPushOnce
-    <div class="max-w-3xl mx-auto pt-32">
+    <div class="max-w-3xl mx-auto pt-32 px-8 pb-8">
         <div
             x-data="{ show: false }"
             x-show="show"

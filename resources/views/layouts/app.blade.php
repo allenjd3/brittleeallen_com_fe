@@ -31,8 +31,8 @@
                 }
             "
         >
-            <flux:modal name="ad" class="!bg-[#E3DDDB]">
-                <iframe src="https://brittanyleeallen.substack.com/embed" width="480" height="320" frameborder="0" scrolling="no"></iframe>
+            <flux:modal name="ad" class="!bg-[#E3DDDB] max-w-full">
+                <iframe class="max-w-full" src="https://brittanyleeallen.substack.com/embed" width="480" height="320" frameborder="0" scrolling="no"></iframe>
             </flux:modal>
             <x-footer />
         </div>
