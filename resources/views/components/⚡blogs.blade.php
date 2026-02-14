@@ -53,6 +53,11 @@ new class extends Component
         $this->cursor = null;
         $this->loadMore();
     }
+
+    public function render()
+    {
+        return $this->view()->title('Blogs | Brittany Lee Allen');
+    }
 };
 ?>
 

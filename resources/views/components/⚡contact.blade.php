@@ -44,6 +44,11 @@ new class extends Component
 
         $this->dispatch('flash-message');
     }
+
+    public function render()
+    {
+        return $this->view()->title('Contact Me | Brittany Lee Allen');
+    }
 };
 ?>
 

@@ -18,12 +18,11 @@ final readonly class Post
         private array $data
     ) {
         $this->title = data_get($data, 'title');
-        if (data_has($data, 'excerpt')) {
-            $this->body = data_get($data, 'excerpt');
-        }
 
         if (data_has($data, 'content')) {
             $this->body = data_get($data, 'content');
+        } elseif (data_has($data, 'excerpt')) {
+            $this->body = data_get($data, 'excerpt');
         }
 
         $this->id = data_get($data, 'databaseId');
