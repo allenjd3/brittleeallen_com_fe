@@ -5,6 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>{{ $title ?? config('app.name') }}</title>
+        <meta property="og:title" content="{{ $title ?? config('app.name') }}" />
+        <meta property="og:description" content="{{ $description ?? "Brittany Lee Allen - Christian author, writer & podcaster sharing hope in grief, miscarriage & suffering. Books: Free to Weep & Lost Gifts." }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ $url ?? "https://brittleeallen.com" }}" />
+        <meta property="og:image" content="{{ $image ?? asset('images/britt-og.png') }}" />
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 

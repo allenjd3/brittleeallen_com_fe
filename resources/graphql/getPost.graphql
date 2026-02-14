@@ -7,6 +7,7 @@ query GetPost($uri:String!) {
       title
       date
       uri
+      excerpt
       content
       comments {
         nodes {

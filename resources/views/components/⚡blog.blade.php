@@ -5,18 +5,18 @@ use Livewire\Component;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Locked;
+use Livewire\Attributes\Layout;
 
 new class extends Component
 {
     #[Locked]
     public string $uri;
+    public ?string $title = null;
+    public array $rawPost;
 
     public function mount(string $uri) {
         $this->uri = $uri;
-    }
 
-    #[Computed]
-    public function post() {
         $response = Http::asJson()->post(config('app.api_endpoint'), [
             'query' => File::get(resource_path('graphql/getPost.graphql')),
             'variables' => [
@@ -28,13 +28,30 @@ new class extends Component
             abort(404);
         }
 
-        return new Post($response->json('data.nodeByUri'));
+        $this->rawPost = $response->json('data.nodeByUri');
+        $this->title = data_get($this->rawPost, 'title');
+    }
+
+    #[Computed]
+    public function post() {
+        return new Post($this->rawPost);
     }
 
     #[On('added-comment')]
     public function updatePost()
     {
         unset($this->post);
+    }
+
+    public function render()
+    {
+        return $this->view()
+            ->layout('layouts.app', [
+                'title' => $this->title . ' | Brittany Lee Allen',
+                'description' => data_get($this->rawPost, 'excerpt'),
+                'url' => $this->post->uri,
+                'image' => $this->post->featuredImage->getUrl('large'),
+            ]);
     }
 };
 ?>
