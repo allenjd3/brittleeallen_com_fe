@@ -64,7 +64,7 @@ new class extends Component
         <div class="prose-lg mx-auto">
             {!! $this->post->body !!}
         </div>
-        <div>
+        <div class="mt-8">
             <div class="flex gap-2">
                 <a class="text-green-very-dark"
                     href="{{ Uri::of('https://www.facebook.com/sharer/sharer.php')->withQuery(['u' => route('post.uri', ['uri' => $this->post->uri])]) }}"
