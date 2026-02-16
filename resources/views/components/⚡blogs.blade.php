@@ -64,7 +64,7 @@ new class extends Component
 <div>
 <livewire:categories />
 <div id="blogs" class="space-y-8 max-w-5xl mx-auto my-8 scroll-mt-16">
-    <flux:input icon="magnifying-glass" placeholder="Search orders" wire:model.live="search" />
+    <flux:input icon="magnifying-glass" placeholder="Search posts" wire:model.live="search" />
     @foreach ($this->posts as $post)
         <div class="grid grid-cols-1 sm:grid-cols-[300px_1fr] gap-8 px-4 place-items-center">
             <div class="aspect-video overflow-hidden">
