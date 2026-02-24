@@ -44,7 +44,9 @@ new class extends Component
     </div>
     <div class="bg-green-very-dark">
         <div class="max-w-7xl mx-auto">
-            <img class="" src="{{ asset('images/free-to-weep.webp') }}" alt="Faith Was Never Meant To Silence Your Grief" />
+            <a href="https://www.amazon.com/Free-Weep-Finding-Courage-Embracing-ebook/dp/B0FQZN9QCL?ref_=ast_author_dp&th=1&psc=1">
+                <img class="" src="{{ asset('images/free-to-weep.webp') }}" alt="Faith Was Never Meant To Silence Your Grief" />
+            </a>
         </div>
     </div>
     <div class="flex flex-col items-center gap-8 my-16">
