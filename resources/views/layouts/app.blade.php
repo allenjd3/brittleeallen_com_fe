@@ -17,7 +17,7 @@
         @fluxAppearance
         @stack('scripts')
     </head>
-    <body>
+    <body class="bg-white text-black">
         <x-nav-bar />
         {{ $slot }}
 
