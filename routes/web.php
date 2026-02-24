@@ -6,6 +6,7 @@ Route::livewire('/', 'home');
 Route::livewire('blogs', 'blogs')->name('post.index');
 Route::livewire('contact', 'contact')->name('contacts');
 Route::livewire('why-i-write', 'meet-brittany')->name('meet-brittany');
+Route::livewire('speaker', 'speaker')->name('speaker');
 Route::livewire('{uri}', 'blog')
     ->where(
         'uri',

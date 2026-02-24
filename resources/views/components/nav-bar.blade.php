@@ -14,6 +14,7 @@
         <a href="https://brittanyleeallen.substack.com/podcast">Podcast</a>
         <a href="/contact">Contact</a>
         <a href="/why-i-write">Meet Brittany</a>
+        <a href="/speaker">Speaker Page</a>
         <a href="https://brittanyleeallen.substack.com/newsletters" class="bg-black rounded-full py-2 px-4 text-white">Newsletter</a>
     </div>
 </nav>
@@ -24,6 +25,7 @@
         <a href="https://brittanyleeallen.substack.com/podcast" class="block p-2 hover:bg-zinc-800/5 rounded">Podcast</a>
         <a href="/contact" class="block p-2 hover:bg-zinc-800/5 rounded">Contact</a>
         <a href="/why-i-write" class="block p-2 hover:bg-zinc-800/5 rounded">Meet Brittany</a>
+        <a href="/speaker" class="block p-2 hover:bg-zinc-800/5 rounded">Speaker Page</a>
         <a href="https://brittanyleeallen.substack.com/newsletters" class="block p-2 bg-black text-white rounded">Newsletter</a>
     </div>
 </flux:modal>
