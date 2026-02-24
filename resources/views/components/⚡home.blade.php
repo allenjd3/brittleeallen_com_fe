@@ -42,6 +42,11 @@ new class extends Component
             </div>
         </div>
     </div>
+    <div class="bg-green-very-dark">
+        <div class="max-w-7xl mx-auto">
+            <img class="" src="{{ asset('images/free-to-weep.webp') }}" alt="Faith Was Never Meant To Silence Your Grief" />
+        </div>
+    </div>
     <div class="flex flex-col items-center gap-8 my-16">
         <h2 class="text-3xl font-serif">
             Sign up for my newsletter!
