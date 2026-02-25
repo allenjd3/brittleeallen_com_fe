@@ -21,6 +21,6 @@ new class extends Component
             <li>Brittany is also open to speaking at Miscarriage/infertility support groups</li>
         </ul>
 
-        <p>Please <a href="{{ route('contacts') }}">fill out this form</a> if interested in booking Brittany for your event and she or someone from her team will get back to you.</p>
+        <p>Please <a href="https://docs.google.com/forms/d/e/1FAIpQLScSo817SuE7xBi2P0lRPdOKggqdCaJYu_BhttFL7vnfaPCFSw/viewform">fill out this form</a> if interested in booking Brittany for your event and she or someone from her team will get back to you.</p>
     </div>
 </div>
