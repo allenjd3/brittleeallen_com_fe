@@ -28,7 +28,7 @@ new class extends Component
     {
         $this->validate();
 
-        Mail::to('britt.allen81713@yahoo.com')->send(new ContactUs(name: $this->name, email: $this->email, content: $this->message));
+        Mail::to(config('app.mailto'))->send(new ContactUs(name: $this->name, email: $this->email, content: $this->message));
 
         $this->successMessage('Successfully sent! Thanks for contacting us.');
     }
