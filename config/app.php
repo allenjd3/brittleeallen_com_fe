@@ -124,4 +124,5 @@ return [
     ],
     'base_api_endpoint' => env('APP_API_ENDPOINT'),
     'api_endpoint' => env('APP_API_ENDPOINT') . '/wp/graphql',
+    'mailto' => env('APP_DEFAULT_EMAIL'),
 ];
