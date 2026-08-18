@@ -49,6 +49,9 @@ jobs:
       - name: Generate Application Key
         run: php artisan key:generate
 
+      - name: Set API Endpoint
+        run: echo "APP_API_ENDPOINT=${{ secrets.APP_API_ENDPOINT }}" >> .env
+
       - name: Build Assets
         run: npm run build
 
